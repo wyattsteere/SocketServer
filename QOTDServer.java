@@ -1,11 +1,3 @@
-/******************************************************************************
-
-                            Online Java Debugger.
-                Code, Run and Debug Java program online.
-Write your code in this editor and press "Debug" button to debug program.
-
-*******************************************************************************/
-
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -25,22 +17,18 @@ public class QOTDServer {
 "That Boy Is Alive. We Are Gonna' Send Somebody To Find Him. And We Are Gonna' Get Him The Hell ... Outta' There!"
 };
 
-    public static void main(String[] args) throws IOException {
-        // Create TCP server socket
+    public static void main(String[] args) throws IOException {        
         ServerSocket tcpServerSocket = new ServerSocket(TCP_PORT);
         System.out.println("TCP server started on port " + TCP_PORT);
 
-        // Create UDP server socket
         DatagramSocket udpServerSocket = new DatagramSocket(UDP_PORT);
         System.out.println("UDP server started on port " + UDP_PORT);
 
         while (true) {
-            // TCP connection handling
             Socket tcpSocket = tcpServerSocket.accept();
             Thread tcpThread = new Thread(() -> handleTCPConnection(tcpSocket));
             tcpThread.start();
 
-            // UDP connection handling
             byte[] buffer = new byte[1024];
             DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
             udpServerSocket.receive(udpPacket);
