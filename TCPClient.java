@@ -13,6 +13,7 @@ public class TCPClient {
                 while ((readChar = in.read()) != -1) {
                     System.out.write(readChar);
                 }
+                
             } else if (args.length >= 3) {
                 for (int i = 2; i < args.length; i++) {
                     String echo = args[i];
@@ -20,6 +21,7 @@ public class TCPClient {
                 }
             }
             sock.close();
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
